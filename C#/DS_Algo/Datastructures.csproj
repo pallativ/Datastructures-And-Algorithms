@@ -11,6 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="LinkedList\**" />
+    <Compile Remove="Queue\**" />
+    <Compile Remove="Stack\**" />
+    <EmbeddedResource Remove="LinkedList\**" />
+    <EmbeddedResource Remove="Queue\**" />
+    <EmbeddedResource Remove="Stack\**" />
+    <None Remove="LinkedList\**" />
+    <None Remove="Queue\**" />
+    <None Remove="Stack\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -22,12 +34,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="LinkedList\" />
-    <Folder Include="Queue\" />
-    <Folder Include="Stack\" />
   </ItemGroup>
 
 </Project>
