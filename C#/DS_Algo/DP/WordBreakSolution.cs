@@ -59,20 +59,20 @@ namespace Datastructures.DP
             Assert.True(result);
             result = IsWordBreakBruteForce("catsandog", new string[] { "cats", "dog", "sand", "and", "cat" });
             Assert.False(result);
-            result = IsWordBreakBruteForce("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new string[] { "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa" });
-            Assert.False(result);
+            //result = IsWordBreakBruteForce("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new string[] { "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa" });
+            //Assert.False(result);
         }
 
         [Fact]
         public void TestWithMemo()
         {
             bool result;
-            //result = IsWordBreakWithMemo("leetcode", new string[] { "leet", "code" });
-            //Assert.True(result);
-            //result = IsWordBreakWithMemo("applepenapple", new string[] { "apple", "pen" });
-            //Assert.True(result);
-            //result = IsWordBreakWithMemo("catsandog", new string[] { "cats", "dog", "sand", "and", "cat" });
-            //Assert.False(result);
+            result = IsWordBreakWithMemo("leetcode", new string[] { "leet", "code" });
+            Assert.True(result);
+            result = IsWordBreakWithMemo("applepenapple", new string[] { "apple", "pen" });
+            Assert.True(result);
+            result = IsWordBreakWithMemo("catsandog", new string[] { "cats", "dog", "sand", "and", "cat" });
+            Assert.False(result);
             result = IsWordBreakWithMemo("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", new string[] { "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa" });
             Assert.False(result);
 
