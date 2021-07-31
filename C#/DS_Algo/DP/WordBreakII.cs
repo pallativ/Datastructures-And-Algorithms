@@ -8,7 +8,13 @@ namespace Datastructures.DP
 {
     public class Solution
     {
+        class PossibleCase
+        {
+            public bool IsPossible { get; set; }
+            public List<string> Words { get; set; }
+        }
         private List<string> result = new List<string>();
+        private Dictionary<int, PossibleCase> memo = new Dictionary<int, PossibleCase>();
         public IList<string> WordBreak(string s, IList<string> wordDict)
         {
             WordBreak(s, wordDict, 0, new List<string>());
@@ -25,8 +31,7 @@ namespace Datastructures.DP
                 var current = s.Substring(start, length - start);
                 if (wordDict.Contains(current))
                 {
-                    var newWordsList = new List<string>(words);
-                    newWordsList.Add(current);
+                    var newWordsList = new List<string>(words) { current };
                     WordBreak(s, wordDict, length, newWordsList);
                 }
             }
@@ -42,6 +47,9 @@ namespace Datastructures.DP
             Assert.Equal(wordBreakInput.Result, result);
         }
     }
+
+
+
     public class WordBreakInput
     {
         public string Sentance { get; set; }
