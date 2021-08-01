@@ -12,7 +12,9 @@ namespace Datastructures.strings
             var stack = new Stack<char>();
             for (int i = 0; i < s.Length; i++)
             {
-                if (stack.Count > 0 && stack.Peek() == '(' && s[i] == ')')
+                if (stack.Count > 0 && ((stack.Peek() == '(' && s[i] == ')') ||
+                                        (stack.Peek() == '{' && s[i] == '}') ||
+                                        (stack.Peek() == '[' && s[i] == ']')))
                     stack.Pop();
                 else
                     stack.Push(s[i]);
@@ -52,7 +54,38 @@ namespace Datastructures.strings
                        Result = true,
                     }
             };
-
+            yield return new object[]
+          {
+                    new IsValidParanthesisInput()
+                    {
+                       Input = "()[]{}",
+                       Result = true,
+                    }
+          };
+            yield return new object[]
+          {
+                    new IsValidParanthesisInput()
+                    {
+                       Input = "(]",
+                       Result = false,
+                    }
+          };
+            yield return new object[]
+        {
+                    new IsValidParanthesisInput()
+                    {
+                       Input = "([)]",
+                       Result = false,
+                    }
+        };
+            yield return new object[]
+        {
+                    new IsValidParanthesisInput()
+                    {
+                       Input = "{[]}",
+                       Result = true,
+                    }
+        };
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
