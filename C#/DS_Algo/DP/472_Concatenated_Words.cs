@@ -8,6 +8,7 @@ namespace Datastructures.DP
     public class ConcatenatedWords
     {
         private Dictionary<int, List<List<string>>> memo = new Dictionary<int, List<List<string>>>();
+        private Dictionary<int, bool> boolMemo = new Dictionary<int, bool>();
         private HashSet<string> wordsHashSet = new HashSet<string>();
         public IList<string> FindAllConcatenatedWordsInADict(string[] words)
         {
@@ -16,10 +17,18 @@ namespace Datastructures.DP
                 wordsHashSet.Add(word);
             }
             var result = new List<string>();
+            //foreach (var sentance in words)
+            //{
+            //    memo.Clear();
+            //    if (WordBreak(sentance))
+            //        result.Add(sentance);
+            //}
+            //return result;
+
             foreach (var sentance in words)
             {
-                memo.Clear();
-                if (WordBreak(sentance))
+                boolMemo.Clear();
+                if (WordBreak(sentance, 0))
                     result.Add(sentance);
             }
             return result;
@@ -34,6 +43,28 @@ namespace Datastructures.DP
                     return true;
             }
             return false;
+        }
+
+
+        internal bool WordBreak(string s, int start)
+        {
+            if (start == s.Length)
+                return true;
+
+            if (boolMemo.ContainsKey(start))
+                return boolMemo[start];
+
+            for (int length = start + 1; length <= s.Length; length++)
+            {
+                var currentWord = s[start..length];
+                if (currentWord != s && wordsHashSet.Contains(currentWord) && WordBreak(s, length))
+                {
+                    boolMemo.Add(start, true);
+                    return boolMemo[start];
+                }
+            }
+            boolMemo.Add(start, false);
+            return boolMemo[start];
         }
         internal List<List<string>> WordBreakMemo(string s, int start)
         {
