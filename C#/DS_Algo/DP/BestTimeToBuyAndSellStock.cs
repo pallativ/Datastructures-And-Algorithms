@@ -7,6 +7,7 @@ namespace Datastructures.DP
 {
     public class BestTimeToBuyAndSellStock
     {
+        private Dictionary<int, int> memo = new Dictionary<int, int>();
         public int MaxProfit(int[] prices)
         {
             return MaxProfitBruteForace(prices, 0);
@@ -15,9 +16,11 @@ namespace Datastructures.DP
         {
             int minPrice = int.MaxValue;
             int maxProfit = 0;
+            if (memo.ContainsKey(start))
+                return memo[start];
             for (int i = start; i < prices.Length; i++)
             {
-                if (prices[i] < minPrice)
+                if (prices[i] <= minPrice)
                     minPrice = prices[i];
                 else
                 {
@@ -25,6 +28,7 @@ namespace Datastructures.DP
                     maxProfit = Math.Max(maxProfit, currentProfit);
                 }
             }
+            memo.Add(start, maxProfit);
             return maxProfit;
         }
         [Fact]
