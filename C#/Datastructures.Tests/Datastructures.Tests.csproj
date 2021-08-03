@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DS_Algo\Datastructures.csproj" />
+    <ProjectReference Include="..\Language\Language.csproj" />
+  </ItemGroup>
+
 </Project>
