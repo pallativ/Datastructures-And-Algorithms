@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datastructures", "DS_Algo\Datastructures.csproj", "{40A3D7B4-FB68-487D-8C3B-8C73CF5D5BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Language", "Language\Language.csproj", "{300C2EDE-9927-438D-AE57-927507E6825D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Language", "Language\Language.csproj", "{300C2EDE-9927-438D-AE57-927507E6825D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datastructures.Tests", "Datastructures.Tests\Datastructures.Tests.csproj", "{9E9A6A5A-3899-4E78-9D01-B8908456B03E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{300C2EDE-9927-438D-AE57-927507E6825D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{300C2EDE-9927-438D-AE57-927507E6825D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{300C2EDE-9927-438D-AE57-927507E6825D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E9A6A5A-3899-4E78-9D01-B8908456B03E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9A6A5A-3899-4E78-9D01-B8908456B03E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9A6A5A-3899-4E78-9D01-B8908456B03E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9A6A5A-3899-4E78-9D01-B8908456B03E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
