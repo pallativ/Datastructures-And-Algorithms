@@ -1,9 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 
 namespace Datastructures._642
 {
+
+    public class AutoCompleteResult
+    {
+        public string Result { get; set; }
+        public int Times { get; set; }
+    }
+    public class AutoCompleteResultComparer : IComparer<AutoCompleteResult>
+    {
+        public int Compare([AllowNull] AutoCompleteResult x, [AllowNull] AutoCompleteResult y)
+        {
+            return y.Times == x.Times ? x.Result.CompareTo(y.Result) : y.Times.CompareTo(x.Times);
+        }
+    }
+
     public class AutocompleteSystem
     {
         private TrieNode root = new TrieNode();
@@ -27,28 +43,37 @@ namespace Datastructures._642
                 }
                 current = current.Map[ch];
             }
-            current.Times = times;
+            if (times == 0)
+                current.Times += 1;
+            else
+                current.Times = times;
         }
         public List<string> input(char c)
         {
+            if (c != '#')
+                currentStringBuilder.Append(c);
             if (c == '#')
             {
-                //Search
+                BuildTrie(currentStringBuilder.ToString(), 0);
+                currentStringBuilder.Clear();
             }
             else if (currentNode.Map.ContainsKey(c))
             {
-                currentStringBuilder.Append(c);
                 currentNode = currentNode.Map[c];
                 var result = BuildResult(currentStringBuilder.ToString(), currentNode);
-                return result;
+                result.Sort(new AutoCompleteResultComparer());
+                var topResults = result.Take(3).Select(t => t.Result).ToList();
+                return topResults;
             }
             return new List<string>();
         }
-        public List<string> BuildResult(string prefix, TrieNode trieNode)
+        public List<AutoCompleteResult> BuildResult(string prefix, TrieNode trieNode)
         {
             if (trieNode == null || trieNode.Map.Count == 0)
-                return new List<string>() { prefix };
-            var list = new List<string>();
+                return new List<AutoCompleteResult>() {
+                    new AutoCompleteResult() { Result= prefix, Times = trieNode.Times }
+                };
+            var list = new List<AutoCompleteResult>();
             foreach (var item in trieNode.Map)
             {
                 var currentResult = BuildResult(prefix + item.Key, item.Value);
