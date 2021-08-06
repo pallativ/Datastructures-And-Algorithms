@@ -15,6 +15,7 @@ namespace Datastructures.Tests._642
             var sentances = new String[] { "i love you", "island", "iroman", "i love leetcode" };
             var times = new int[] { 5, 3, 2, 2 };
             var solution = new Datastructures._642.AutocompleteSystem(sentances, times);
+            var list = solution.input('i');
         }
     }
 }
