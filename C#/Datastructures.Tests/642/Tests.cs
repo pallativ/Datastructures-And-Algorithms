@@ -34,6 +34,30 @@ namespace Datastructures.Tests._642
 
 
         [Fact]
+        public void Test2()
+        {
+            var sentances = new String[] { "abc", "abbc", "a" };
+            var times = new int[] { 3, 3, 3 };
+            var solution = new Datastructures._642.AutocompleteSystem(sentances, times);
+            var list = solution.input('b');
+            var expected = new string[] {  };
+            Assert.Equal(expected, list);
+
+            list = solution.input('c');
+            expected = new string[] {  };
+            Assert.Equal(expected, list);
+
+            list = solution.input('#');
+            expected = new string[] { };
+            Assert.Equal(expected, list);
+
+            list = solution.input('a');
+            expected = new string[] { "a", "abbc", "abc" };
+            Assert.Equal(expected, list);
+        }
+
+
+        [Fact]
         public void Test1()
         {
             var sentances = new string[] { "i love you", "island", "iroman", "i love leetcode" };

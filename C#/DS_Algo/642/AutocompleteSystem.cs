@@ -60,7 +60,8 @@ namespace Datastructures._642
             else if (currentNode.Map.ContainsKey(c))
             {
                 currentNode = currentNode.Map[c];
-                var result = BuildResult(currentStringBuilder.ToString(), currentNode);
+                var result = new List<AutoCompleteResult>();
+                result.AddRange(BuildResult(currentStringBuilder.ToString(), currentNode));
                 result.Sort(new AutoCompleteResultComparer());
                 var topResults = result.Take(3).Select(t => t.Result).ToList();
                 return topResults;
@@ -70,10 +71,12 @@ namespace Datastructures._642
         public List<AutoCompleteResult> BuildResult(string prefix, TrieNode trieNode)
         {
             if (trieNode == null || trieNode.Map.Count == 0)
-                return new List<AutoCompleteResult>() {
-                    new AutoCompleteResult() { Result= prefix, Times = trieNode.Times }
-                };
+                return new List<AutoCompleteResult>() { new AutoCompleteResult() { Result = prefix, Times = trieNode.Times } };
+
             var list = new List<AutoCompleteResult>();
+            if (trieNode.Times > 0)
+                list.Add(new AutoCompleteResult() { Result = currentStringBuilder.ToString(), Times = trieNode.Times });
+
             foreach (var item in trieNode.Map)
             {
                 var currentResult = BuildResult(prefix + item.Key, item.Value);
