@@ -49,6 +49,22 @@ namespace HackerRank.Contacts
             }
             return current.Count;
         }
+        public bool IsGoodSet(string name)
+        {
+            var current = root;
+            foreach (var ch in name)
+            {
+                if (!current.Contains(ch))
+                    current[ch] = new TrieNode();
+                current = current[ch];
+                if (current.IsComplete)
+                    return false;
+                current.Count++;
+            }
+            current.IsComplete = true;
+            return true;
+        }
+
         public List<string> Get(string partialName)
         {
             var current = root;
